@@ -51,5 +51,4 @@ type IncomingMessage  =
     | MCounterDecremented Int {-clientCounterData-}
 
 type Transition =
-      Internal InternalTransition
-    | External OutgoingTransition
+    External OutgoingTransition
