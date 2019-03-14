@@ -1,0 +1,33 @@
+digraph D {
+  MainMenunode [label="MainMenu"]
+  CounterPlacenode [label="CounterPlace"]
+  GoToCounterPlacenode [label="GoToCounterPlace",shape=box]
+  GoToMainMenunode [label="GoToMainMenu",shape=box]
+  IncrementCounternode [label="IncrementCounter",shape=box]
+  DecrementCounternode [label="DecrementCounter",shape=box]
+
+
+  GoToCounterPlacenode -> MainMenunode [arrowhead=none,sametail=MainMenuWentToCounterPlaceCounterPlace]
+  GoToCounterPlacenode -> CounterPlacenode [label="WentToCounterPlace",sametail=MainMenuWentToCounterPlaceCounterPlace]
+
+  GoToCounterPlacenode -> MainMenunode [arrowhead=none,sametail=MainMenusame,style=dashed]
+  GoToCounterPlacenode -> MainMenunode [sametail=MainMenusame,style=dashed]
+
+
+  GoToMainMenunode -> CounterPlacenode [arrowhead=none,sametail=CounterPlaceWentToMainMenuMainMenu]
+  GoToMainMenunode -> MainMenunode [label="WentToMainMenu",sametail=CounterPlaceWentToMainMenuMainMenu]
+
+  GoToMainMenunode -> CounterPlacenode [arrowhead=none,sametail=CounterPlacesame,style=dashed]
+  GoToMainMenunode -> CounterPlacenode [sametail=CounterPlacesame,style=dashed]
+
+
+  IncrementCounternode -> CounterPlacenode [arrowhead=none,sametail=CounterPlaceCounterIncrementedCounterPlace]
+  IncrementCounternode -> CounterPlacenode [label="CounterIncremented",sametail=CounterPlaceCounterIncrementedCounterPlace]
+
+
+  DecrementCounternode -> CounterPlacenode [arrowhead=none,sametail=CounterPlaceCounterDecrementedCounterPlace]
+  DecrementCounternode -> CounterPlacenode [label="CounterDecremented",sametail=CounterPlaceCounterDecrementedCounterPlace]
+
+
+
+}
