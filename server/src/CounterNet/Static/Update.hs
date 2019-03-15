@@ -10,7 +10,7 @@ import qualified Data.IntMap.Strict as IM'
 import Data.Maybe (fromJust, isJust, mapMaybe)
 import Utils.Utils
 import Static.Cmd (Cmd)
-import Plugins.Users (processLogout)
+import Plugins.Users (processLogout, Users)
 import Static.Task (evalTask)
 
 -- player processing functions
@@ -83,7 +83,11 @@ disconnect fsp clientID state =
         newPlayers = IM'.delete clientID players
         task = processLogout clientID
     in do
-        evalTask (pluginStates state) task -- back door into the users plugin...
+        case (TM.lookup $ pluginStates state :: Maybe Plugins.Users.Users) of
+            Just _ -> do
+                evalTask (pluginStates state) task -- back door into the users plugin...
+                return ()
+            Nothing -> return ()
         return $ state { playerStates = newPlayers, placeStates = newPlaces }
 
 update :: TopLevelData -> Maybe ClientID -> Transition -> NetState Player -> (NetState Player,[(ClientID,ClientMessage)],Maybe (Cmd.Cmd Transition))

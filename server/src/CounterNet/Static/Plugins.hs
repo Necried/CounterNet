@@ -13,3 +13,8 @@ import Control.Concurrent.Thread (forkIO, result)
 initPlugins :: IO PluginState
 initPlugins = do
     return $ TM.empty
+teardownPlugins :: PluginState -> IO ()
+teardownPlugins ps = do
+
+
+    return ()

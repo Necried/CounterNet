@@ -10,10 +10,11 @@ outputDirectory = "."
 --where the generator is
 generatorRoot = "../elm-haskell-state-diagram"
 
--- clientID = edt (ElmIntRange 0 999999) "clientID" "id assigned when logging in"
 
 clientCounterData = edt (ElmIntRange (-1000000) 1000000) "clientCounterData" "client side counter data"
+serverCounterData = edt (ElmIntRange (-1000000) 1000000) "serverCounterData" "server side counter data"
 
+{-
 counterType :: ElmCustom
 counterType = ec -- helper to make custom types
                 "Counter" -- name of type (Elm syntax rules)
@@ -29,6 +30,7 @@ counterAction = ec
                 [("Increment", [])
                 ,("Decrement", [])
                 ]
+-}
 
 counterNet :: Net
 counterNet =
@@ -44,7 +46,7 @@ counterNet =
 
         counterPlace =
             HybridPlace "CounterPlace"
-                    [edt (ElmIntRange (-1000000) 1000000) "serverCounterData" "server side counter data"] --server state
+                    [serverCounterData] --server state
                     []                  --player state
                     [clientCounterData]                          --client state
                     Nothing
