@@ -404,16 +404,15 @@ view model =
 
 
 {-
-   alert model =
-       case model.alert of
-           Just al ->
-               Modal.config CloseEditUser
-                   |> Modal.h4 [] [ Html.text "Well, this is embarassing.... :(" ]
-                   |> Modal.body []
-                       [
-                           Html.text al
-                       ]
-                   |> Modal.view Modal.shown
-           Nothing ->
-               Html.div [] []
--}
+alert model = 
+    case model.alert of
+        Just al ->
+            Modal.config CloseEditUser
+                |> Modal.h4 [] [ Html.text "Well, this is embarassing.... :(" ]
+                |> Modal.body []
+                    [ 
+                        Html.text al
+                    ]
+                |> Modal.view Modal.shown
+        Nothing ->
+            Html.div [] []-}

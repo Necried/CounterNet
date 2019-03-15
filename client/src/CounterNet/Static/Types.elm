@@ -92,5 +92,5 @@ type IncomingMessage
 {- clientCounterData -}
 
 
-type Transition
-    = External OutgoingTransition
+type Transition =
+    External OutgoingTransition
