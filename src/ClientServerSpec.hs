@@ -34,14 +34,10 @@ counterNet =
                     []  -- summary: Client state
                         -- details: Information stored by the client on their browser, and
                         --           is not tracked by the server
-                    
-                    -- summary: Name of a subnet
-                    -- details: Specify another Petri Net under this place. Not used now.
-                    Nothing  
 
                     -- summary: Initial commands 
                     -- details: When the server starts, perform commands that can be executed right away
-                    (Nothing, Nothing)
+                    Nothing
                     
 
         counterPlace =
@@ -50,7 +46,6 @@ counterNet =
                     []                  --player state
                     [clientCounterData]                          --client state
                     Nothing
-                    (Nothing, Nothing)
                     
 
         goToCounterPlace =                 
