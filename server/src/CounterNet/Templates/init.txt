@@ -1,5 +1,7 @@
 module CounterNet.Init where
 import CounterNet.Static.Types
+import Static.Cmd (Cmd)
+import Static.Cmd as Cmd
 
 -- the initial states of each place in this net
 initMainMenu :: MainMenu
