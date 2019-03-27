@@ -8,7 +8,7 @@ import TypeHelpers
 --directory to output the generated files
 outputDirectory = "."
 --where the generator is
-generatorRoot = "../elm-haskell-state-diagram"
+generatorRoot = "../petri-app-land"
 
 clientCounterData = dt (IntRangeT (-1000000) 1000000) "clientCounterData" "client side counter data"
 serverCounterData = dt (IntRangeT (-1000000) 1000000) "serverCounterData" "server side counter data"
@@ -69,7 +69,7 @@ counterNet =
                 --          transition. The format is (FromPlace, Maybe (ToPlace, msg)).
                 --          We need a Maybe because it is not guarenteed for clients to always take
                 --          the transition!
-                [("MainMenu", Just ("CounterPlace", msg "WentToCounterPlace" [clientCounterData]))
+                [("MainMenu", Just ("CounterPlace", msg "WentToCounterPlace" [clientCounterData], Nothing))
                 ,("MainMenu", Nothing) --some people will stay
                 ]
 
@@ -84,7 +84,7 @@ counterNet =
             Transition
                 OriginClientOnly
                 (msg "GoToMainMenu" [])
-                [("CounterPlace", Just ("MainMenu", msg "WentToMainMenu" []))
+                [("CounterPlace", Just ("MainMenu", msg "WentToMainMenu" [], Nothing))
                 ,("CounterPlace", Nothing) --some people will stay
                 ]
                 Nothing
@@ -93,7 +93,7 @@ counterNet =
             Transition
                 OriginClientOnly
                 (msg "IncrementCounter" [])
-                [("CounterPlace", Just ("CounterPlace", msg "CounterIncremented" [clientCounterData]))
+                [("CounterPlace", Just ("CounterPlace", msg "CounterIncremented" [clientCounterData], Nothing))
                 ]
                 Nothing
 
@@ -101,7 +101,7 @@ counterNet =
             Transition
                 OriginClientOnly
                 (msg "DecrementCounter" [])
-                [("CounterPlace", Just ("CounterPlace", msg "CounterDecremented" [clientCounterData]))
+                [("CounterPlace", Just ("CounterPlace", msg "CounterDecremented" [clientCounterData], Nothing))
                 ]
                 Nothing                
     in
